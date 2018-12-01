@@ -6,20 +6,26 @@ package me.swords1234.chessBot.utils;
  * You can also contact him by his Discord: sword1234#6398
  */
 
+import me.swords1234.chessBot.utils.moveConsumers.TypeMoveBoolean;
+
 public enum MovementDirection {
-    STATIONARY((x, y, x2, y2, type) -> y == y2),
-    FORWARD((x, y, x2, y2, type) -> {
+    STATIONARY((loc, newLoc, type) -> loc.getY() == newLoc.getY()),
+    FORWARD((loc, newLoc, type) -> {
+        int y = loc.getY();
+        int y2 = newLoc.getY();
         if (type == Type.WHITE) {
-            return x < x2;
+            return y < y2;
         } else {
-            return x > x2;
+            return y > y2;
         }
     }),
-    BACKWARD((x, y, x2, y2, type) -> {
+    BACKWARD((loc, newLoc, type) -> {
+        int y = loc.getY();
+        int y2 = newLoc.getY();
         if (type == Type.WHITE) {
-            return x > x2;
+            return y > y2;
         } else {
-            return x < x2;
+            return y < y2;
         }
     });
 
