@@ -4,13 +4,8 @@ import me.swords1234.chessBot.utils.Direction;
 import me.swords1234.chessBot.utils.Location;
 
 public abstract class Peice {
-    private Type type;
-    private Location location = new Location(3,44);
-    private Direction[] directionMove;
-
-    public Location getLocation() {
-        return location;
-    }
+    protected Type type;
+    protected Direction[] directionMove;
 }
 enum Type {
     BLACK,
