@@ -1,8 +1,9 @@
 package me.swords1234.chessBot.peices;
 
 import me.swords1234.chessBot.Peice;
-import me.swords1234.chessBot.utils.Location;
-import me.swords1234.chessBot.utils.Type;
+import me.swords1234.chessBot.utils.*;
+
+import javax.swing.text.html.Option;
 
 public class King extends Peice {
     public King(Type colorType) {
@@ -10,12 +11,15 @@ public class King extends Peice {
     }
 
     @Override
-    public boolean canJumpOverEnimies() {
-        return false;
-    }
+    protected Options allowedToMove(Location current, Location newLoc) {
+        DirectionDistance directionDistance = Direction.getDistanceDirection(current, newLoc);
+        if (directionDistance.getDistance() == 1) {
+            Direction direction = directionDistance.getDirection();
+            if (direction == Direction.DIAGONAL || direction == Direction.STRAIGHT) {
+                return new Options(true);
+            }
 
-    @Override
-    protected boolean allowedToMove(Location current, Location newLoc) {
-        return false;
+        }
+        return new Options(false);
     }
 }

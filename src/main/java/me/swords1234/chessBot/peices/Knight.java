@@ -3,6 +3,7 @@ package me.swords1234.chessBot.peices;
 import me.swords1234.chessBot.Peice;
 import me.swords1234.chessBot.utils.Direction;
 import me.swords1234.chessBot.utils.Location;
+import me.swords1234.chessBot.utils.Options;
 import me.swords1234.chessBot.utils.Type;
 
 public class Knight extends Peice {
@@ -11,16 +12,11 @@ public class Knight extends Peice {
     }
 
     @Override
-    public boolean canJumpOverEnimies() {
-        return true;
-    }
-
-    @Override
-    protected boolean allowedToMove(Location current, Location newLoc) {
+    protected Options allowedToMove(Location current, Location newLoc) {
         if (Direction.getDirection(current, newLoc) == Direction.L_SHAPED) {
-            return true;
+            return new Options(true, true, false);
         } else {
-            return false;
+            return new Options(false);
         }
     }
 }

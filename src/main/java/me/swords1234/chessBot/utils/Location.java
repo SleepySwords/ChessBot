@@ -1,6 +1,6 @@
 package me.swords1234.chessBot.utils;
 
-public class Location {
+public class Location implements Cloneable{
     private int x;
     private int y;
 
@@ -20,5 +20,9 @@ public class Location {
     public void move(int xs, int ys) {
         x = xs;
         y = ys;
+    }
+
+    public Location clone() throws CloneNotSupportedException {
+        return (Location) super.clone();
     }
 }

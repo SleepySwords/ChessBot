@@ -2,6 +2,7 @@ package me.swords1234.chessBot.peices;
 
 import me.swords1234.chessBot.Peice;
 import me.swords1234.chessBot.utils.Location;
+import me.swords1234.chessBot.utils.Options;
 import me.swords1234.chessBot.utils.Type;
 
 public class None extends Peice {
@@ -10,12 +11,7 @@ public class None extends Peice {
     }
 
     @Override
-    public boolean canJumpOverEnimies() {
-        return false;
-    }
-
-    @Override
-    protected boolean allowedToMove(Location current, Location newLoc) {
-        return true;
+    protected Options allowedToMove(Location current, Location newLoc) {
+        return new Options(false);
     }
 }

@@ -27,11 +27,21 @@ public enum MovementDirection {
         } else {
             return y < y2;
         }
-    });
-
+    }),
+    NONE((loc, newLoc, type) -> true);
 
     TypeMoveBoolean mBoolean;
     MovementDirection(TypeMoveBoolean moveBoolean) {
         mBoolean = moveBoolean;
+    }
+
+    public static MovementDirection getMovementDirection(Location current, Location newLoc, Type type) {
+        for (MovementDirection movementDirection : MovementDirection.values()) {
+            if (movementDirection.mBoolean.accept(current, newLoc, type)) {
+                if (movementDirection == MovementDirection.NONE) continue;
+                return movementDirection;
+            }
+        }
+        return MovementDirection.NONE;
     }
 }

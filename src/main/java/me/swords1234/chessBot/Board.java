@@ -1,8 +1,11 @@
 package me.swords1234.chessBot;
 
 import me.swords1234.chessBot.peices.None;
+import me.swords1234.chessBot.utils.Direction;
 import me.swords1234.chessBot.utils.Location;
+import me.swords1234.chessBot.utils.Options;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Vector;
 
@@ -46,12 +49,37 @@ public class Board {
     }
 
     public boolean requestMove(Peice peice, Location newLocation) {
-        getLocation(peice);
+        if (newLocation.getX() > 7 || newLocation.getX() < 0) return false;
         if (getPeices(newLocation) instanceof None) {
             movePeice(peice, newLocation);
             return true;
         }
+        if (peice.getType() != getPeices(newLocation).getType()) {
+            //todo Handle kills
+            movePeice(peice, newLocation);
+            return true;
+        }
         return false;
+    }
+
+    public boolean move(Peice peice, Location location) {
+        Options options = peice.allowedToMove(getLocation(peice), location);
+        if (!options.canMove()) return false;
+        if (options.checkIfPlayerIsDiagonal()) {
+           if (getPeices(location).getType() == peice.getType() || getPeices(location) instanceof None) {
+                return false;
+           }
+        }
+        Direction direction = Direction.getDirection(getLocation(peice), location);
+        if (!options.canJumpOverOther()) {
+            List<Location> locations = direction.getLocations(getLocation(peice), location);
+            for (Location loc : locations) {
+                if (!(getPeices(loc) instanceof None)) {
+                    return true;
+                }
+            }
+        }
+        return requestMove(peice, location);
     }
 
     public void addPeice(Peice p, int x, int y) {

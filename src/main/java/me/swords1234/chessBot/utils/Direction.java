@@ -1,7 +1,12 @@
 package me.swords1234.chessBot.utils;
 
+import me.swords1234.chessBot.utils.moveConsumers.ListLocationConsumer;
 import me.swords1234.chessBot.utils.moveConsumers.MoveBoolean;
 import me.swords1234.chessBot.utils.moveConsumers.MoveInt;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public enum Direction {
 
@@ -25,7 +30,23 @@ public enum Direction {
         } else {
             return Math.max(x, x2) - Math.min(x, x2);
         }
-    }),
+    }, ((location, loc2) -> {
+        int x = location.getX();
+        int y = location.getY();
+        int x2 = loc2.getX();
+        int y2 = loc2.getY();
+        List<Location> locations = new ArrayList<>();
+        if (Math.max(x, x2) - Math.min(x, x2) == 0) {
+            for (int i = Math.min(y, y2); i < Math.max(y, y2); i++) {
+                locations.add(new Location(x2, i));
+            }
+        } else {
+            for (int i = Math.min(x, x2); i < Math.max(x, x2); i++) {
+                locations.add(new Location(i, y2));
+            }
+        }
+        return locations;
+    })),
 
 
     DIAGONAL(((current, newLoc) -> {
@@ -39,7 +60,16 @@ public enum Direction {
     }), (loc, nLoc) -> {
         //todo Fill this in
         return Math.max(loc.getX(), nLoc.getX()) - Math.min(loc.getX(), nLoc.getX());
-    }),
+    }, ((location, loc2) -> {
+        List<Location> locations = new ArrayList<>();
+        int x = Math.max(location.getX(), loc2.getX());
+        int y = Math.max(location.getY(), loc2.getY());
+        int x2 = Math.min(location.getX(), loc2.getX());
+        for (int i = 0; i < x-x2; i++) {
+            locations.add(new Location(i+x, i+y));
+        }
+        return locations;
+    })),
 
 
     L_SHAPED(((current, newLoc) -> {
@@ -65,19 +95,30 @@ public enum Direction {
     }), (loc, nLoc) -> {
         //todo Fill this in
         return 4;
-    }),
+    }, ((location, loc2) -> {
+        List<Location> locations = new ArrayList<>();
+        locations.add(location);
+        locations.add(loc2);
+        return locations;
+    })),
 
 
     NONE(((current, newLoc) -> true), (loc, nLoc) -> {
         //todo Fill this in
         return 0;
-    });
+    }, ((location, loc2) -> new ArrayList<>()));
 
     private MoveBoolean movementBoolean;
     private MoveInt distance;
-    Direction(MoveBoolean moveBoolean, MoveInt dist) {
+    private ListLocationConsumer listLocationConsumer;
+    Direction(MoveBoolean moveBoolean, MoveInt dist, ListLocationConsumer consumer) {
         movementBoolean = moveBoolean;
         distance = dist;
+        listLocationConsumer = consumer;
+    }
+
+    public List<Location> getLocations(Location current, Location newLoc) {
+        return listLocationConsumer.accept(current, newLoc);
     }
 
     public MoveInt getDistance() {

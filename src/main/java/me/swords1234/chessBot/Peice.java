@@ -2,6 +2,7 @@ package me.swords1234.chessBot;
 
 import me.swords1234.chessBot.utils.Direction;
 import me.swords1234.chessBot.utils.Location;
+import me.swords1234.chessBot.utils.Options;
 import me.swords1234.chessBot.utils.Type;
 
 import java.util.ArrayList;
@@ -16,7 +17,9 @@ public abstract class Peice {
         type = colorType;
     }
 
-    public abstract boolean canJumpOverEnimies();
+    public Type getType() {
+        return type;
+    }
 
-    protected abstract boolean allowedToMove(Location current, Location newLoc);
+    protected abstract Options allowedToMove(Location current, Location newLoc);
 }
