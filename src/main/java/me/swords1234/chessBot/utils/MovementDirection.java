@@ -7,9 +7,25 @@ package me.swords1234.chessBot.utils;
  */
 
 public enum MovementDirection {
-    STATIONARY,
-    FORWARD,
-    BACKWARD
+    STATIONARY((x, y, x2, y2, type) -> y == y2),
+    FORWARD((x, y, x2, y2, type) -> {
+        if (type == Type.WHITE) {
+            return x < x2;
+        } else {
+            return x > x2;
+        }
+    }),
+    BACKWARD((x, y, x2, y2, type) -> {
+        if (type == Type.WHITE) {
+            return x > x2;
+        } else {
+            return x < x2;
+        }
+    });
 
 
+    TypeMoveBoolean mBoolean;
+    MovementDirection(TypeMoveBoolean moveBoolean) {
+        mBoolean = moveBoolean;
+    }
 }

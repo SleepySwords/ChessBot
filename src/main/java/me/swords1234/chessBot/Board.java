@@ -61,10 +61,11 @@ public class Board {
     public static void main(String[] args) {
         Board board = new Board();
         board.setupBoard();
+        /*
         Peice p = new Peice(){};
         Peice ps = new Peice(){};
         board.addPeice(p, 5, 3);
         board.addPeice(ps, 7, 6);
-        System.out.println(board.requestMove(p, new Location(7, 6)));
+        System.out.println(board.requestMove(p, new Location(7, 6)));*/
     }
 }
