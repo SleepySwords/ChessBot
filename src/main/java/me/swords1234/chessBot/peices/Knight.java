@@ -12,6 +12,14 @@ public class Knight extends Peice {
     }
 
     @Override
+    public String printType() {
+        if (type == Type.WHITE) {
+            return "N";
+        }
+        return "n";
+    }
+
+    @Override
     protected Options allowedToMove(Location current, Location newLoc) {
         if (Direction.getDirection(current, newLoc) == Direction.L_SHAPED) {
             return new Options(true, true, false);

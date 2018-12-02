@@ -11,6 +11,14 @@ public class King extends Peice {
     }
 
     @Override
+    public String printType() {
+        if (type == Type.WHITE) {
+            return "K";
+        }
+        return "k";
+    }
+
+    @Override
     protected Options allowedToMove(Location current, Location newLoc) {
         DirectionDistance directionDistance = Direction.getDistanceDirection(current, newLoc);
         if (directionDistance.getDistance() == 1) {

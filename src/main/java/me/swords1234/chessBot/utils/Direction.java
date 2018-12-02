@@ -37,11 +37,11 @@ public enum Direction {
         int y2 = loc2.getY();
         List<Location> locations = new ArrayList<>();
         if (Math.max(x, x2) - Math.min(x, x2) == 0) {
-            for (int i = Math.min(y, y2); i < Math.max(y, y2); i++) {
+            for (int i = Math.min(y, y2) + 1; i < Math.max(y, y2); i++) {
                 locations.add(new Location(x2, i));
             }
         } else {
-            for (int i = Math.min(x, x2); i < Math.max(x, x2); i++) {
+            for (int i = Math.min(x, x2) + 1; i < Math.max(x, x2); i++) {
                 locations.add(new Location(i, y2));
             }
         }
@@ -65,7 +65,7 @@ public enum Direction {
         int x = Math.max(location.getX(), loc2.getX());
         int y = Math.max(location.getY(), loc2.getY());
         int x2 = Math.min(location.getX(), loc2.getX());
-        for (int i = 0; i < x-x2; i++) {
+        for (int i = 1; i < x-x2; i++) {
             locations.add(new Location(i+x, i+y));
         }
         return locations;

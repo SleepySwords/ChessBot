@@ -19,6 +19,7 @@ public enum MovementDirection {
             return y > y2;
         }
     }),
+
     BACKWARD((loc, newLoc, type) -> {
         int y = loc.getY();
         int y2 = newLoc.getY();
@@ -28,6 +29,7 @@ public enum MovementDirection {
             return y < y2;
         }
     }),
+
     NONE((loc, newLoc, type) -> true);
 
     TypeMoveBoolean mBoolean;

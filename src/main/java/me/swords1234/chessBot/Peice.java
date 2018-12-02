@@ -21,5 +21,7 @@ public abstract class Peice {
         return type;
     }
 
+    public abstract String printType();
+
     protected abstract Options allowedToMove(Location current, Location newLoc);
 }

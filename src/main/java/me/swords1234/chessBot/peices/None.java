@@ -11,6 +11,11 @@ public class None extends Peice {
     }
 
     @Override
+    public String printType() {
+        return "*";
+    }
+
+    @Override
     protected Options allowedToMove(Location current, Location newLoc) {
         return new Options(false);
     }

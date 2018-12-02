@@ -5,11 +5,19 @@ public class Options {
     private boolean canMove;
     private boolean canJumpOverOther;
     private boolean checkIfPlayerIsDiagonal;
+    private boolean checkInFront;
 
     public Options(boolean canMove, boolean canJumpOverOther, boolean checkIfPlayerIsDiagonal) {
         this.canMove = canMove;
         this.canJumpOverOther = canJumpOverOther;
         this.checkIfPlayerIsDiagonal = checkIfPlayerIsDiagonal;
+    }
+
+    public Options(boolean canMove, boolean canJumpOverOther, boolean checkIfPlayerIsDiagonal, boolean checkInFront) {
+        this.canMove = canMove;
+        this.canJumpOverOther = canJumpOverOther;
+        this.checkIfPlayerIsDiagonal = checkIfPlayerIsDiagonal;
+        this.checkInFront = checkInFront;
     }
 
     public Options(boolean canMove) {
@@ -20,6 +28,10 @@ public class Options {
 
     public boolean canMove() {
         return canMove;
+    }
+
+    public boolean isCheckInFront() {
+        return checkInFront;
     }
 
     public boolean canJumpOverOther() {

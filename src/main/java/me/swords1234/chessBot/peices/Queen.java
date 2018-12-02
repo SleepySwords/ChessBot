@@ -14,6 +14,14 @@ public class Queen extends Peice {
     }
 
     @Override
+    public String printType() {
+        if (type == Type.WHITE) {
+            return "Q";
+        }
+        return "q";
+    }
+
+    @Override
     protected Options allowedToMove(Location current, Location newLoc) {
         if (directionMove.contains(Direction.getDirection(current, newLoc))) {
             return new Options(true);
