@@ -1,11 +1,11 @@
 package me.swords1234.chessBot.utils;
 
+import me.swords1234.chessBot.utils.enums.DirectionDistance;
 import me.swords1234.chessBot.utils.moveConsumers.ListLocationConsumer;
 import me.swords1234.chessBot.utils.moveConsumers.MoveBoolean;
 import me.swords1234.chessBot.utils.moveConsumers.MoveInt;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public enum Direction {

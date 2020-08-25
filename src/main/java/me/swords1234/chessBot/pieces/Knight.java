@@ -1,10 +1,10 @@
-package me.swords1234.chessBot.peices;
+package me.swords1234.chessBot.pieces;
 
 import me.swords1234.chessBot.Peice;
 import me.swords1234.chessBot.utils.Direction;
 import me.swords1234.chessBot.utils.Location;
 import me.swords1234.chessBot.utils.Options;
-import me.swords1234.chessBot.utils.Type;
+import me.swords1234.chessBot.utils.enums.Type;
 
 public class Knight extends Peice {
     public Knight(Type colorType) {

@@ -25,4 +25,12 @@ public class Location implements Cloneable{
     public Location clone() throws CloneNotSupportedException {
         return (Location) super.clone();
     }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }

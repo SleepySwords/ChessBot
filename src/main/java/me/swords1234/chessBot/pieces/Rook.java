@@ -1,29 +1,27 @@
-package me.swords1234.chessBot.peices;
+package me.swords1234.chessBot.pieces;
 
 import me.swords1234.chessBot.Peice;
 import me.swords1234.chessBot.utils.Direction;
 import me.swords1234.chessBot.utils.Location;
 import me.swords1234.chessBot.utils.Options;
-import me.swords1234.chessBot.utils.Type;
+import me.swords1234.chessBot.utils.enums.Type;
 
-public class Queen extends Peice {
-    public Queen(Type type) {
-        super(type);
-        directionMove.add(Direction.DIAGONAL);
-        directionMove.add(Direction.STRAIGHT);
+public class Rook extends Peice {
+    public Rook(Type colorType) {
+        super(colorType);
     }
 
     @Override
     public String printType() {
         if (type == Type.WHITE) {
-            return "Q";
+            return "R";
         }
-        return "q";
+        return "r";
     }
 
     @Override
     protected Options allowedToMove(Location current, Location newLoc) {
-        if (directionMove.contains(Direction.getDirection(current, newLoc))) {
+        if (Direction.getDirection(current, newLoc) == Direction.STRAIGHT) {
             return new Options(true);
         }
         return new Options(false);
